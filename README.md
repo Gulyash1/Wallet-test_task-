@@ -3,7 +3,7 @@
 > Реализован на **FastAPI, PostgreSQL, SQLAlchemy (async)*** с поддержкой конкурентных операций и миграция Alembic
 
 ## Установка и запуск
-1.Создайте .env файл ``` cp .env.sample .env ```
+1. Создайте .env файл ``` cp .env.sample .env ```
 2. Установите зависимости ``` pip install requirements.txt ```
 3. Запустите соберите и запустите контейнер приложения ``` docker-compose up --build ```
 4. Запуск тестов ``` pytest -v ```
