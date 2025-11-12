@@ -41,7 +41,7 @@ password = os.getenv('POSTGRES_PASSWORD')
 host = os.getenv('POSTGRES_HOST')
 port = os.getenv('POSTGRES_PORT')
 url = f"postgresql://{user}:{password}@{host}:{port}/{db}"
-config.set_main_option("sqlalchemy.url", get_url())
+config.set_main_option("sqlalchemy.url", url)
 
 
 def run_migrations_offline() -> None:

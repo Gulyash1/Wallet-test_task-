@@ -1,3 +1,4 @@
+import asyncio
 import uuid
 from uuid import uuid4
 from starlette import status
@@ -29,3 +30,18 @@ async def test_wallet_wrong_operation_type(test_client, test_wallet, get_url):
                                       json={"operation_type": "MULTIPLY",
                                             "amount": 2})
     assert response.status_code == status.HTTP_422_UNPROCESSABLE_CONTENT
+
+
+
+async def test_concurrent_wallet_deposits(test_client, test_wallet,get_url):
+    async def deposit_once(amount):
+        response = await test_client.post(f"{get_url}/{test_wallet.uuid}/operation",
+                                          json={'operation_type': 'DEPOSIT',
+                                                'amount': amount})
+        return response
+    tasks = [deposit_once(10) for _ in range(10)]
+    responses = await asyncio.gather(*tasks)
+    for response in responses:
+        assert response.status_code == status.HTTP_200_OK
+    result = await test_client.get(f"{get_url}/{test_wallet.uuid}")
+    assert result.json()["balance"] == "225.00"
