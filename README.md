@@ -1,6 +1,6 @@
 # Wallet API
 > Сервис для управления кошельками пользователей
-> Реализован на **FastAPI, PostgreSQL, SQLAlchemy (async)** с поддержкой конкурентных операций и миграция Alembic
+> Реализован на **FastAPI, PostgreSQL, SQLAlchemy (async)** с поддержкой конкурентных операций и миграций Alembic
 
 ## Установка и запуск
 1. Создайте .env файл ``` cp .env.sample .env ```
